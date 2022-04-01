@@ -127,7 +127,7 @@ class LinkedList:
             self.head==self.head.next
             return
 
-        itr = self.next
+        itr = self.head
         while itr.next:
             if itr.next.data==data:
                 itr.next==itr.next.next
