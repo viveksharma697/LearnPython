@@ -1,3 +1,5 @@
+# write a program to find all the paths and the shortest path between the two cities
+
 class Graph:
     def __init__(self, edges):
         self.edges = edges
@@ -49,17 +51,17 @@ class Graph:
 
 if __name__ == '__main__':
 
-    routes = [
-        ("Mumbai", "Pune"),
-        ("Mumbai", "Surat"),
-        ("Surat", "Bangaluru"),
-        ("Pune", "Hyderabad"),
-        ("Pune", "Mysuru"),
-        ("Hyderabad", "Bangaluru"),
-        ("Hyderabad", "Chennai"),
-        ("Mysuru", "Bangaluru"),
-        ("Chennai", "Bangaluru")
-    ]
+    # routes = [
+    #     ("Mumbai", "Pune"),
+    #     ("Mumbai", "Surat"),
+    #     ("Surat", "Bangaluru"),
+    #     ("Pune", "Hyderabad"),
+    #     ("Pune", "Mysuru"),
+    #     ("Hyderabad", "Bangaluru"),
+    #     ("Hyderabad", "Chennai"),
+    #     ("Mysuru", "Bangaluru"),
+    #     ("Chennai", "Bangaluru")
+    # ]
 
     routes = [
         ("Mumbai", "Paris"),
