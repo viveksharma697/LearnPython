@@ -10,7 +10,7 @@ def tra_sals_func(graph, s):
     for i in range(v):
         if i != s:
             vertex.append(i)
-
+    
     min_path = maxsize
     while True:
         current_cost = 0
