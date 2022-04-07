@@ -47,7 +47,7 @@ class Graph:
                         shortest_path = sp
 
         return shortest_path
-
+# if the shortest path is none then how can we find the length of the shortest path
 
 if __name__ == '__main__':
 
