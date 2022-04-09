@@ -37,12 +37,12 @@ def decodd(line):
     line += ' '
 
     decoded = ''
-    citext = ''
+    encrcode = ''
     for n in line:
 
         if (n != ' '):
             i = 0
-            citext += n
+            encrcode += n
 
         else:
             i += 1
@@ -50,8 +50,8 @@ def decodd(line):
             if i == 2 :
                 decoded += ' '
             else:
-                decoded += list(dic_mor_code.keys())[list(dic_mor_code.values()).index(citext)]
-                citext = ''
+                decoded += list(dic_mor_code.keys())[list(dic_mor_code.values()).index(encrcode)]
+                encrcode = ''
  
     return decoded
  
