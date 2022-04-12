@@ -25,4 +25,4 @@ permute(a, 0, n-1)
 y = [int(i) for i in x]
 y.sort()
 z = y[-1] - y[0]
-print(z)
+print("The difference between the highest and the lowest of the permutations of number is : ", z)
