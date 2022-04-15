@@ -1,124 +1,65 @@
-import random
-
-
-class TicTacToe:
-
+class ticTacToe():
     def __init__(self):
-        self.board = []
+        self.board = self.make_board()
+        self.current_winner = None
 
-    def create_board(self):
-        for i in range(3):
-            row = []
-            for j in range(3):
-                row.append('-')
-            self.board.append(row)
+    @staticmethod
+    def make_board():
+        return [' ' for _ in range(9)]
+    
+    def print_board(self):
+        for row in [self.board[i*3:(i+1) * 3] for i in range(3)]:
+            print('| ' + ' | '.join(row) + ' |')
 
-    def get_random_first_player(self):
-        return random.randint(0, 1)
+    @staticmethod
+    def print_board_nums():
+        number_board = [[str(i) for i in range(j*3, (j+1)*3)] for j in range(3)]
+        for row in number_board:
+            print('| ' + ' | '.join(row) + ' |')
 
-    def fix_spot(self, row, col, player):
-        self.board[row][col] = player
-
-    def is_player_win(self, player):
-        win = None
-
-        n = len(self.board)
-
-        # checking rows
-        for i in range(n):
-            win = True
-            for j in range(n):
-                if self.board[i][j] != player:
-                    win = False
-                    break
-            if win:
-                return win
-
-        # checking columns
-        for i in range(n):
-            win = True
-            for j in range(n):
-                if self.board[j][i] != player:
-                    win = False
-                    break
-            if win:
-                return win
-
-        # checking diagonals
-        win = True
-        for i in range(n):
-            if self.board[i][i] != player:
-                win = False
-                break
-        if win:
-            return win
-
-        win = True
-        for i in range(n):
-            if self.board[i][n - 1 - i] != player:
-                win = False
-                break
-        if win:
-            return win
+    def make_move(self, square, letter):
+        if self.board[square] == ' ':
+            self.board[square] = letter
+            if self.winner(square, letter):
+                self.current_winner = letter
+            return True
         return False
 
-        for row in self.board:
-            for item in row:
-                if item == '-':
-                    return False
-        return True
+    def winner(self, square, letter):
+        # check the row
+        row_ind = math.floor(square / 3)
+        row = self.board[row_ind*3:(row_ind+1)*3]
+        # print('row', row)
+        if all([s == letter for s in row]):
+            return True
+        col_ind = square % 3
+        column = [self.board[col_ind+i*3] for i in range(3)]
+        #print('col', column)
+        if all([s == letter for s in column]):
+            return True
+        if square % 2 == 0:
+            diagonal1 = [self.board[i] for i in [0, 4, 8]]
+            # print('diag1', diagonal1)
+            if all([s == letter for s in diagonal1]):
+                return True
+            diagonal2 = [self.board[i] for i in [2, 4, 6]]
+            # print('diag2', diagonal2)
+            if all([s == letter for s in diagonal2]):
+                return True
+        return False
 
-    def is_board_filled(self):
-        for row in self.board:
-            for item in row:
-                if item == '-':
-                    return False
-        return True
+    def empty_squares(self):
+        return ' ' in self.board
 
-    def swap_player_turn(self, player):
-        return 'X' if player == 'O' else 'O'
+    def num_empty_squares(self):
+        return self.board.count(' ')
 
-    def show_board(self):
-        for row in self.board:
-            for item in row:
-                print(item, end=" ")
-            print()
+    def available_moves(self):
+        return [i for i, x in enumerate(self.board) if x == " "]
 
-    def start(self):
-        self.create_board()
+def play(game, x_player, o_player, print_game=True):
+    
+    if print_game:
+        game.print_board_nums()
 
-        player = 'X' if self.get_random_first_player() == 1 else 'O'
-        while True:
-            print(f"Player {player} turn")
-
-            self.show_board()
-
-            # taking user input
-            row, col = list(
-                map(int, input("Enter row and column numbers to fix spot: ").split()))
-            print()
-
-            # fixing the spot
-            self.fix_spot(row - 1, col - 1, player)
-
-            # checking whether current player is won or not
-            if self.is_player_win(player):
-                print(f"Player {player} wins the game!")
-                break
-
-            # checking whether the game is draw or not
-            if self.is_board_filled():
-                print("Match Draw!")
-                break
-
-            # swapping the turn
-            player = self.swap_player_turn(player)
-
-        # showing the final view of board
-        print()
-        self.show_board()
-
-
-
-tic_tac_toe = TicTacToe()
-tic_tac_toe.start()
+        # time 8:28
