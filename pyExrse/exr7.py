@@ -1,13 +1,19 @@
 #  Hide the credit card number
 # Write a function in Python that accepts a credit card number. It should return a string where all the characters are hidden with an asterisk except the last four. For example, if the function gets sent "4444444444444444", then it should return "4444".
 
-# def hideNo(str):
-#     if len(str) == 14:
-#         str.replace((0,1,2,3,4,5,6,7,8,9,10,11), "*")
-#         return str
-#     else:
-#         print("Please enter a valid number")
+def hideNo(str):
+    
+    store = ""
 
-# n = "12546547156492"
+    for i in range(11):
 
-# print(hideNo(n))
+        if len(str) == 16:
+            store += "*"
+        
+        else:
+            print("Please enter a valid number")
+    print(store + str[12:16])
+
+n = "12546547156492"
+
+print(hideNo(n))
