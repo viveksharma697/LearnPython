@@ -16,4 +16,25 @@ def guessUnder(x):
     
     print("You have hit the jackpot!!!")
 
-guessUnder(100)
+# now let the computer guess the number in your mind
+
+def guessBelow(x):
+    start = 1
+    end = x
+    instructions = ''
+
+    while instructions != 'c':
+        if start != end:
+            guess = random.randint(start, end)
+        else:
+            guess = start
+
+        instructions = input(f"The number {guess} is too high(H), too low(L) and correct(C) : ")
+        if instructions == 'h':
+            end = guess - 1
+        elif instructions == 'l':
+            low = guess + 1
+
+    print("Computer has guessed the correct number")
+
+guessBelow(1000)
