@@ -1,0 +1,1 @@
+# write a python program to generate all possible combinations of a string
